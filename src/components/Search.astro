@@ -1,0 +1,119 @@
+---
+interface Props {
+  pages: Array<{
+    title: string;
+    url: string;
+    content: string;
+  }>;
+}
+
+const { pages } = Astro.props;
+---
+
+<div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+  <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 w-2/3 max-w-2xl bg-white rounded-lg shadow-xl">
+    <div class="p-4">
+      <div class="relative">
+        <input
+          type="text"
+          id="search-input"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Search documentation..."
+        />
+        <div class="absolute right-3 top-2 text-gray-400 text-sm">
+          <kbd class="px-2 py-1 bg-gray-100 rounded">Esc</kbd>
+        </div>
+      </div>
+      <div id="search-results" class="mt-4 max-h-96 overflow-y-auto">
+        <!-- Results will be populated here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ pages }}>
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const searchButton = document.getElementById('search-button');
+  
+  if (searchModal && searchInput && searchResults && searchButton) {
+    // Show modal on Ctrl+K or button click
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        searchModal.classList.remove('hidden');
+        searchInput.focus();
+      }
+    });
+
+    searchButton.addEventListener('click', () => {
+      searchModal.classList.remove('hidden');
+      searchInput.focus();
+    });
+
+    // Hide modal on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchModal.classList.add('hidden');
+      }
+    });
+
+    // Close modal when clicking outside
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) {
+        searchModal.classList.add('hidden');
+      }
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      if (!query) {
+        searchResults.innerHTML = '';
+        return;
+      }
+
+      const results = pages.filter(page => {
+        const titleMatch = page.title.toLowerCase().includes(query);
+        const contentMatch = page.content.toLowerCase().includes(query);
+        return titleMatch || contentMatch;
+      });
+
+      searchResults.innerHTML = results.map(page => {
+        const title = highlightMatch(page.title, query);
+        const content = getContentSnippet(page.content, query);
+        return `
+          <a href="${page.url}" class="block p-3 hover:bg-gray-50 rounded-lg">
+            <div class="font-medium text-gray-900">${title}</div>
+            <div class="text-sm text-gray-500 mt-1">${page.url}</div>
+            <div class="text-sm text-gray-600 mt-2 line-clamp-2">${content}</div>
+          </a>
+        `;
+      }).join('');
+    });
+
+    function highlightMatch(text, query) {
+      if (!query) return text;
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<mark class="bg-yellow-200">$1</mark>');
+    }
+
+    function getContentSnippet(content, query) {
+      if (!query) return content;
+      
+      const contextWindow = 100; // Number of characters to show before and after the match
+      const index = content.toLowerCase().indexOf(query);
+      if (index === -1) return content.substring(0, 300) + '...';
+      
+      const start = Math.max(0, index - contextWindow);
+      const end = Math.min(content.length, index + query.length + contextWindow);
+      
+      let snippet = content.substring(start, end);
+      if (start > 0) snippet = '...' + snippet;
+      if (end < content.length) snippet += '...';
+      
+      return highlightMatch(snippet, query);
+    }
+  }
+</script> 

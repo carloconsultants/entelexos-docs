@@ -1,0 +1,19 @@
+---
+interface Props {
+  links: Array<{
+    text: string;
+    href: string;
+  }>;
+}
+
+const { links } = Astro.props;
+---
+
+<div class="next-steps">
+  <h2>Next Steps</h2>
+  <div class="button-group">
+    {links.map((link) => (
+      <a href={link.href}>{link.text}</a>
+    ))}
+  </div>
+</div> 

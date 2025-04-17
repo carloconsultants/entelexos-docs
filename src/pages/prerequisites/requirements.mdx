@@ -1,0 +1,38 @@
+---
+layout: '../../layouts/Layout.astro'
+title: 'Requirements'
+---
+
+import NextSteps from '../../components/NextSteps.astro'
+
+{/* begin markdown */}
+
+# Prerequisites
+
+Before installing the Entelexos platform, ensure your system meets these requirements.
+
+## System Requirements
+
+- Operating System: Windows 10/11, macOS 10.15+, or Linux
+- CPU: 2+ cores
+- RAM: 8GB minimum
+- Storage: 20GB available space
+
+## Software Dependencies
+
+- Node.js 16+
+- Python 3.8+
+- Database: PostgreSQL 12+
+
+## Network Requirements
+
+Ensure your network meets these requirements:
+
+- Stable internet connection
+- Port 443 (HTTPS) open
+- Port 80 (HTTP) open for redirects
+
+<NextSteps links={[
+  { text: 'Azure Marketplace Purchase Prerequisites', href: '/prerequisites/azure-marketplace' },
+  { text: 'Power BI Prerequisites', href: '/prerequisites/power-bi' }
+]} /> 
