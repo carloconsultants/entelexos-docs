@@ -17,11 +17,11 @@ if (isBuild) {
 }
 
 export default defineConfig({
-  server: { port: SERVER_PORT },
+  // server: { port: SERVER_PORT },
   site: BASE_URL,
   base: 'entelexos-docs',
   integrations: [mdx(), sitemap(), tailwind()],
-  // redirects: {
-  //   '/': '/introduction/welcome'
-  // }
+  redirects: {
+    '/': '/introduction/welcome'
+  }
 }); 
