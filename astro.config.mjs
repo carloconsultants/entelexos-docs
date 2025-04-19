@@ -7,9 +7,9 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   output: 'static',
   integrations: [mdx(), sitemap(), tailwind()],
-  redirects: {
-    '/': '/introduction/welcome'
-  },
+  // redirects: {
+  //   '/': '/introduction/welcome'
+  // },
   // Use different site URL based on environment
   site: process.env.NODE_ENV === 'production' 
     ? 'https://carloconsultants.github.io'
