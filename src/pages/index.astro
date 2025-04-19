@@ -1,15 +1,64 @@
 ---
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Documentation Index">
+  <div class="documentation-index">
+    <h1>Documentation</h1>
+    
+    <div class="section">
+      <h2>Introduction</h2>
+      <ul>
+        <li><a href="/introduction/welcome">Welcome</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Prerequisites</h2>
+      <ul>
+        <li><a href="/prerequisites">Getting Started</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Setup</h2>
+      <ul>
+        <li><a href="/setup">Setup Guide</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>User Guide</h2>
+      <ul>
+        <li><a href="/users">User Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Admin Guide</h2>
+      <ul>
+        <li><a href="/admins">Administrator Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .documentation-index {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+</style>
