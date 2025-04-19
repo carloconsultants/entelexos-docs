@@ -1,191 +1,25 @@
 ---
+import NavSection from './NavSection.astro';
+import { getNavigationStructure } from '../utils/getNavigationStructure';
+
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
+const sections = await getNavigationStructure();
 ---
 
 <nav class="w-64 bg-gray-100 h-[calc(100vh-4rem)] p-5 overflow-y-auto">
   <ul class="space-y-2">
-    <li>
-      <details class="group" open>
-        <summary class="flex items-center justify-between cursor-pointer group">
-          <span class="text-gray-900 font-medium">Introduction</span>
-          <svg class="w-4 h-4 text-gray-500 transform rotate-90 transition-transform duration-200 group-open:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <div class="relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 transition-opacity duration-200 group-open:opacity-100 opacity-0"></div>
-          <ul class="pl-4 mt-2 space-y-2 transition-all duration-200 transform origin-top">
-            <li>
-              <a 
-                href="/introduction/welcome" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/introduction/welcome' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Welcome
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/introduction/docs-users" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/introduction/docs-users' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Docs Users
-              </a>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </li>
-    <li>
-      <details class="group" open>
-        <summary class="flex items-center justify-between cursor-pointer group">
-          <span class="text-gray-900 font-medium">Users</span>
-          <svg class="w-4 h-4 text-gray-500 transform rotate-90 transition-transform duration-200 group-open:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <div class="relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 transition-opacity duration-200 group-open:opacity-100 opacity-0"></div>
-          <ul class="pl-4 mt-2 space-y-2 transition-all duration-200 transform origin-top">
-            <li>
-              <a 
-                href="/users/user-persona" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/users/user-persona' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                User Persona
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/users/nav-menu" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/users/nav-menu' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Nav Menu
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/users/home-screen" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/users/home-screen' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Home Screen
-              </a>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </li>
-    <li>
-      <details class="group" open>
-        <summary class="flex items-center justify-between cursor-pointer group">
-          <span class="text-gray-900 font-medium">Admins</span>
-          <svg class="w-4 h-4 text-gray-500 transform rotate-90 transition-transform duration-200 group-open:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <div class="relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 transition-opacity duration-200 group-open:opacity-100 opacity-0"></div>
-          <ul class="pl-4 mt-2 space-y-2 transition-all duration-200 transform origin-top">
-            <li>
-              <a 
-                href="/admins/welcome" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/admins/welcome' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Welcome
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/admins/getting-started" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/admins/getting-started' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Getting Started
-              </a>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </li>
-    <li>
-      <details class="group" open>
-        <summary class="flex items-center justify-between cursor-pointer group">
-          <span class="text-gray-900 font-medium">Setup</span>
-          <svg class="w-4 h-4 text-gray-500 transform rotate-90 transition-transform duration-200 group-open:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <div class="relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 transition-opacity duration-200 group-open:opacity-100 opacity-0"></div>
-          <ul class="pl-4 mt-2 space-y-2 transition-all duration-200 transform origin-top">
-            <li>
-              <a 
-                href="/setup/azure-marketplace" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/setup/azure-marketplace' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Azure Marketplace
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/setup/embedded-sku" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/setup/embedded-sku' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Embedded SKU
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/setup/power-bi-admin" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/setup/power-bi-admin' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Power BI Admin Setup
-              </a>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </li>
-    <li>
-      <details class="group" open>
-        <summary class="flex items-center justify-between cursor-pointer group">
-          <span class="text-gray-900 font-medium">Prerequisites</span>
-          <svg class="w-4 h-4 text-gray-500 transform rotate-90 transition-transform duration-200 group-open:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </summary>
-        <div class="relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 transition-opacity duration-200 group-open:opacity-100 opacity-0"></div>
-          <ul class="pl-4 mt-2 space-y-2 transition-all duration-200 transform origin-top">
-            <li>
-              <a 
-                href="/prerequisites/requirements" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/prerequisites/requirements' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Requirements
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/prerequisites/azure-marketplace" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/prerequisites/azure-marketplace' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Purchase from Azure Marketplace
-              </a>
-            </li>
-            <li>
-              <a 
-                href="/prerequisites/power-bi" 
-                class={`block px-2 py-1 rounded-md transition-colors duration-200 ${currentPath === '/prerequisites/power-bi' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Power BI
-              </a>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </li>
+    {sections.map(section => (
+      <li>
+        <NavSection 
+          title={section.title}
+          items={section.items}
+          currentPath={currentPath}
+        />
+      </li>
+    ))}
   </ul>
 </nav> 
